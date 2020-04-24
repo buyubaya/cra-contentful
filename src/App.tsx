@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.scss";
-import Test from "./components/Test";
+import Test from "components/Test";
 
 function App() {
   return (
