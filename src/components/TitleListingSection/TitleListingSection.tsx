@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Button, Form, Input, Row, Col } from "antd";
+import { EditorExtensionSDK } from "contentful-ui-extensions-sdk";
 import s from "./TitleListingSection.module.scss";
 import { FormInstance } from "antd/lib/form";
 
@@ -14,9 +15,23 @@ const SUPPORTED_LANGUAGES: { [key: string]: string } = {
   ja: "Japanese",
 };
 
-class TitleListingSection extends React.Component {
-  state = { visible: true };
+interface TitleListingSectionProps {
+  sdk: EditorExtensionSDK;
+}
+
+class TitleListingSection extends React.Component<TitleListingSectionProps, any> {
   formRef = React.createRef<FormInstance>();
+
+  constructor(props: TitleListingSectionProps) {
+    super(props);
+
+    this.state = {
+      displayTitle: props.sdk.entry.fields.displayTitle.getValue(),
+      visible: true,
+    };
+
+    console.log("props.sdk.entry.fields.displayTitle.getValue()", props.sdk.entry.fields.displayTitle.getValue());
+  }
 
   showModal = () => {
     this.setState({
@@ -43,6 +58,13 @@ class TitleListingSection extends React.Component {
     console.log("FINISH", Row, Col, SUPPORTED_LANGUAGES);
   };
 
+  handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    await this.props.sdk.entry.fields.displayTitle.setValue({
+      en: value,
+    });
+  };
+
   render() {
     return (
       <div>
@@ -61,7 +83,9 @@ class TitleListingSection extends React.Component {
             ref={this.formRef}
             {...layout}
             name="basic"
-            initialValues={{ remember: true }}
+            initialValues={{
+              ...this.state,
+            }}
             onFinish={this.handleFinish}
           >
             {/* <Form.Item
@@ -93,7 +117,7 @@ class TitleListingSection extends React.Component {
                     name={["displayTitle", item]}
                     rules={[{ required: true, message: "Please input your username!" }]}
                   >
-                    <Input />
+                    <Input onChange={this.handleInputChange} />
                   </Form.Item>
                 ))}
               </Col>

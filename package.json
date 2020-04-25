@@ -17,6 +17,7 @@
     "antd": "^4.1.0",
     "antd-scss-theme-plugin": "^1.0.8",
     "babel-plugin-import": "^1.13.0",
+    "contentful-ui-extensions-sdk": "^3.12.1",
     "craco-antd": "^1.14.1",
     "eslint-plugin-import": "^2.20.2",
     "file-loader": "^6.0.0",
