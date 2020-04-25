@@ -1,11 +1,19 @@
 import React from "react";
 import "./App.scss";
-import Test from "components/Test";
+import { EditorExtensionSDK } from "contentful-ui-extensions-sdk";
+import TitleListingSection from "components/TitleListingSection";
 
-function App() {
+interface AppProps {
+  sdk: EditorExtensionSDK;
+}
+
+function App({ sdk }: AppProps) {
   return (
     <div>
-      <Test />
+      <h1>
+        HELLO - {process.env.REACT_APP_TEST} - {process.env.REACT_APP_TEST_VAR}
+      </h1>
+      <TitleListingSection sdk={sdk} />
     </div>
   );
 }

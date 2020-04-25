@@ -4,6 +4,7 @@
   "private": true,
   "main": ".prettierrc.js",
   "dependencies": {
+    "@craco/craco": "^5.6.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -16,22 +17,26 @@
     "antd": "^4.1.0",
     "antd-scss-theme-plugin": "^1.0.8",
     "babel-plugin-import": "^1.13.0",
+    "contentful-ui-extensions-sdk": "^3.12.1",
+    "craco-antd": "^1.14.1",
     "eslint-plugin-import": "^2.20.2",
     "file-loader": "^6.0.0",
     "less-loader": "^4.1.0",
     "node-sass": "^4.14.0",
+    "nodemon": "^2.0.3",
     "null-loader": "^3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "sass-loader": "^7.3.1",
+    "scss-to-json": "^2.0.0",
     "typescript": "^3.7.5",
     "url-loader": "^4.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "BROWSER=NONE && nodemon -w ./src/styles/antd/theme.customize.scss --exec 'craco start' --open=false",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

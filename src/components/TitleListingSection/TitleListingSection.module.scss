@@ -1,0 +1,20 @@
+@import "styles";
+
+.formColumnLeft {
+  text-align: right;
+  line-height: 32px;
+  padding-right: 20px;
+}
+
+.formColumnRight {
+  border-left: 4px solid $gray-3;
+  padding-left: 20px;
+
+  :global {
+    .ant-form-item {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
