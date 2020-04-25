@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.scss";
-import Test from "components/Test";
+import TitleListingSection from "components/TitleListingSection";
 
 function App() {
   return (
     <div>
-      <Test />
+      <TitleListingSection />
+      HELLO
     </div>
   );
 }

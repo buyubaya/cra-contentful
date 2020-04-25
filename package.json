@@ -22,16 +22,18 @@
     "file-loader": "^6.0.0",
     "less-loader": "^4.1.0",
     "node-sass": "^4.14.0",
+    "nodemon": "^2.0.3",
     "null-loader": "^3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "sass-loader": "^7.3.1",
+    "scss-to-json": "^2.0.0",
     "typescript": "^3.7.5",
     "url-loader": "^4.0.0"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "BROWSER=NONE && nodemon -w ./src/styles/antd/theme.customize.scss --exec 'craco start' --open=false",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
