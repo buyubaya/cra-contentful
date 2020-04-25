@@ -1,0 +1,49 @@
+// ========= flex  ========
+
+%flex {
+  display: flex;
+}
+
+%flex-center-vertical {
+  display: flex;
+  align-items: center;
+}
+
+%flex-center-horizontal {
+  display: flex;
+  justify-content: center;
+}
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// ========= typography ========
+$typography: (
+  12px: 20px,
+  14px: 22px,
+  16px: 24px,
+  20px: 28px,
+  24px: 32px,
+  30px: 38px,
+  38px: 46px,
+  46px: 54px,
+  56px: 64px,
+);
+
+@each $font-size, $line-height in $typography {
+  %regular-#{$font-size}-#{$line-height} {
+    font-size: $font-size;
+    line-height: $line-height;
+  }
+}
+
+@each $font-size, $line-height in $typography {
+  %semibold-#{$font-size}-#{$line-height} {
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: 600;
+  }
+}
