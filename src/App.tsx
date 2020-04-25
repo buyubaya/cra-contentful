@@ -10,6 +10,7 @@ interface AppProps {
 function App({ sdk }: AppProps) {
   return (
     <div>
+      <h1>HELLO {process.env.REACT_APP_TEST_VAR}</h1>
       <TitleListingSection sdk={sdk} />
     </div>
   );
