@@ -47,7 +47,7 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "post-build": "node test.js",
-    "preinstall": "[[ \"${VERCEL_GITHUB_COMMIT_REF}\" != \"feature/\"* ]]"
+    "preinstall": "[[ \"${VERCEL_GITHUB_COMMIT_REF}\" != \"features/\"* ]]"
   },
   "eslintConfig": {
     "extends": "react-app"
