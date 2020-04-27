@@ -46,7 +46,8 @@
     "build": "craco build && npm run post-build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "post-build": "node test.js"
+    "post-build": "node test.js",
+    "preinstall": "[[ \"${VERCEL_BITBUCKET_COMMIT_REF}\" != \"feature/\"* ]]"
   },
   "eslintConfig": {
     "extends": "react-app"

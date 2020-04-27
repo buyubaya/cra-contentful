@@ -2,7 +2,7 @@ const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 const chalk = require("chalk");
 
-console.log("AFTER BUILD", process.env.REACT_APP_TEST, process.env.REACT_APP_TEST_VAR);
+console.log("AFTER BUILD", process.env.REACT_APP_TEST, process.env.REACT_APP_TEST_VAR, process.env.VERCEL_URL);
 
 // const EXTENSION_ID = "cra-entry-extension";
 // const EXTENSION_NAME = "CRA ENTRY EXTENSION";
@@ -10,7 +10,7 @@ console.log("AFTER BUILD", process.env.REACT_APP_TEST, process.env.REACT_APP_TES
 // const SPACE_ID = "0bcdcoj46mj5";
 const EXTENSION_ID = process.env.EXTENSION_ID;
 const EXTENSION_NAME = process.env.EXTENSION_NAME;
-const EXTENSION_SRC = process.env.EXTENSION_SRC;
+const EXTENSION_SRC = process.env.VERCEL_URL;
 const SPACE_ID = process.env.SPACE_ID;
 
 const updateExtension = async () => {
