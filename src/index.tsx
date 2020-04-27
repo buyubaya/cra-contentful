@@ -4,6 +4,8 @@ import App from "./App";
 // import * as serviceWorker from "./serviceWorker";
 import { init, locations, EditorExtensionSDK } from "contentful-ui-extensions-sdk";
 
+console.log("INDEX", process.env.REACT_APP_TEST, process.env.REACT_APP_TEST_VAR);
+
 init((sdk: EditorExtensionSDK) => {
   if (sdk.location.is(locations.LOCATION_ENTRY_EDITOR)) {
     ReactDOM.render(

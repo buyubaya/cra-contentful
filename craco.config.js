@@ -8,6 +8,8 @@ const lessVars = Object.keys(sassVars).reduce((acc, curVar) => {
   return acc;
 }, {});
 
+console.log(22222, process.env.REACT_APP_TEST, process.env.REACT_APP_TEST_VAR);
+
 module.exports = {
   plugins: [
     {

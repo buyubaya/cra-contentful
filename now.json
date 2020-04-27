@@ -1,4 +1,8 @@
 {
+  "env": {
+    "REACT_APP_TEST": "REACT_APP_TEST",
+    "REACT_APP_TEST_VAR": "@REACT_APP_TEST_VAR"
+  },
   "build": {
     "env": {
       "REACT_APP_TEST": "REACT_APP_TEST",
