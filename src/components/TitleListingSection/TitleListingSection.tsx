@@ -10,11 +10,6 @@ const layout = {
   // wrapperCol: { span: 16 },
 };
 
-const SUPPORTED_LANGUAGES: { [key: string]: string } = {
-  en: "English",
-  ja: "Japanese",
-};
-
 interface TitleListingSectionProps {
   sdk: EditorExtensionSDK;
 }
@@ -26,11 +21,19 @@ class TitleListingSection extends React.Component<TitleListingSectionProps, any>
     super(props);
 
     this.state = {
-      displayTitle: props.sdk.entry.fields.displayTitle.getValue(),
+      displayTitle: props.sdk.entry.fields.displayTitle,
+      availableLocales: props.sdk.locales.available || [],
       visible: true,
     };
 
-    console.log("props.sdk.entry.fields.displayTitle.getValue()", props.sdk.entry.fields.displayTitle.getValue());
+    console.log("props.sdk.entry.fields.displayTitle", props.sdk.entry.fields.displayTitle.getValue("de-DE"));
+
+    // props.sdk.entry.fields.displayTitle.onValueChanged("en-US", locale => console.log("VALUE locale CHANGED", locale));
+    // props.sdk.entry.onSysChanged(data => console.log("DATA CHANGED", data));
+
+    props.sdk.entry.fields.displayTitle.onIsDisabledChanged("de-DE", () => {
+      console.log("onIsDisabledChanged");
+    });
   }
 
   showModal = () => {
@@ -40,11 +43,10 @@ class TitleListingSection extends React.Component<TitleListingSectionProps, any>
   };
 
   handleOk = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    console.log(e);
     // this.setState({
     //   visible: false,
     // });
-    console.log("ADD SECTION", this.formRef.current?.getFieldsValue());
+    console.log("ADD SECTION", this.formRef.current?.getFieldsValue(), e);
   };
 
   handleCancel = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -55,14 +57,12 @@ class TitleListingSection extends React.Component<TitleListingSectionProps, any>
   };
 
   handleFinish = () => {
-    console.log("FINISH", Row, Col, SUPPORTED_LANGUAGES);
+    console.log("FINISH", Row, Col);
   };
 
-  handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  handleInputChange = (locale: string) => async (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    await this.props.sdk.entry.fields.displayTitle.setValue({
-      en: value,
-    });
+    await this.props.sdk.entry.fields.displayTitle.setValue(value, locale);
   };
 
   render() {
@@ -85,6 +85,10 @@ class TitleListingSection extends React.Component<TitleListingSectionProps, any>
             name="basic"
             initialValues={{
               ...this.state,
+              displayTitle: {
+                "en-US": this.state.displayTitle.getValue(),
+                "de-DE": this.state.displayTitle.getValue("de-DE"),
+              },
             }}
             onFinish={this.handleFinish}
           >
@@ -111,13 +115,13 @@ class TitleListingSection extends React.Component<TitleListingSectionProps, any>
                 <div className={s.required}>Display Title</div>
               </Col>
               <Col md={18} className={s.formColumnRight}>
-                {Object.keys(SUPPORTED_LANGUAGES).map(item => (
+                {this.state.availableLocales.map((item: string) => (
                   <Form.Item
-                    label={SUPPORTED_LANGUAGES[item]}
+                    label={item}
                     name={["displayTitle", item]}
                     rules={[{ required: true, message: "Please input your username!" }]}
                   >
-                    <Input onChange={this.handleInputChange} />
+                    <Input onChange={this.handleInputChange(item)} />
                   </Form.Item>
                 ))}
               </Col>
