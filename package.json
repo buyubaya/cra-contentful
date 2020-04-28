@@ -44,7 +44,7 @@
   "scripts": {
     "start": "BROWSER=NONE && nodemon -w ./src/styles/antd/theme.customize.scss --exec 'craco start' --open=false && npm run update-extension",
     "build:cf": "contentful-extension-scripts build",
-    "build": "craco build && npm run post-build",
+    "build": "craco build && npm run update-extension",
     "test": "craco test",
     "eject": "react-scripts eject",
     "update-extension": "node updateExtension.js",
