@@ -31,8 +31,12 @@ class TitleListingSection extends React.Component<TitleListingSectionProps, any>
     // props.sdk.entry.fields.displayTitle.onValueChanged("en-US", locale => console.log("VALUE locale CHANGED", locale));
     // props.sdk.entry.onSysChanged(data => console.log("DATA CHANGED", data));
 
-    props.sdk.entry.fields.displayTitle.onIsDisabledChanged("de-DE", () => {
-      console.log("onIsDisabledChanged");
+    // props.sdk.entry.fields.displayTitle.onIsDisabledChanged("de-DE", () => {
+    //   console.log("onIsDisabledChanged");
+    // });
+
+    props.sdk.editor.onLocaleSettingsChanged(value => {
+      console.log("onLocaleSettingsChanged", value);
     });
   }
 
